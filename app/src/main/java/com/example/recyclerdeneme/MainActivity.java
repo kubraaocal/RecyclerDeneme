@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerView);
         pick=findViewById(R.id.pick);
 
-        adapter=new RecyclerAdapter(uris);
+        adapter=new RecyclerAdapter(MainActivity.this,uris);
         recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this,4));
         recyclerView.setAdapter(adapter);
 

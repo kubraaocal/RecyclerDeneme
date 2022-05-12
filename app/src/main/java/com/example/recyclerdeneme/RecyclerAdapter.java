@@ -1,5 +1,6 @@
 package com.example.recyclerdeneme;
 
+import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,13 +10,18 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private ArrayList<Uri> uriArrayList;
+    private Context context;
 
-    public RecyclerAdapter(ArrayList<Uri> uriArrayList) {
+    public RecyclerAdapter(Context context,ArrayList<Uri> uriArrayList) {
+        this.context=context;
         this.uriArrayList = uriArrayList;
     }
 
@@ -30,7 +36,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position) {
-        holder.imageView.setImageURI(uriArrayList.get(position));
+        Glide.with(context).load(uriArrayList.get(position)).apply(RequestOptions.centerCropTransform()).into(holder.imageView);
+        //holder.imageView.setImageURI(uriArrayList.get(position));
     }
 
     @Override
